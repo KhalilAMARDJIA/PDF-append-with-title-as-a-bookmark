@@ -12,7 +12,24 @@ def main():
     cwd = os.getcwd()
     os.chdir(cwd)
     
-    def merger(output_path, input_paths):
+    from typing import List
+    
+    def merger(output_path: str, input_paths: List[str]) -> None:
+        """
+        Merges multiple PDF files into a single PDF file and saves it to the
+        specified output path.
+
+        Args:
+            output_path (str): The path to which the merged PDF should be saved.
+            input_paths (List[str]): A list of paths to the PDF files to be merged.
+
+        Returns:
+            None
+
+        Raises:
+            No exceptions are explicitly raised. However, if a PDF file cannot be
+            read, an error message is printed to the console.
+        """
         pdf_merger = PdfMerger()
         
         for path in input_paths:
