@@ -27,11 +27,11 @@ def generate_appendix_toc(input_folder: str, output_folder: str, main_document_n
     for appendix_path in appendix_paths:
         appendix_reader = PdfReader(appendix_path)
         appendix_page_count = len(appendix_reader.pages)
-        
-        # Create title from filename (e.g., "01_caprani2017.pdf" -> "Appendix A")
-        appendix_title = f"Appendix {chr(65 + len(toc_entries))}"  # Convert to letters A, B, C, etc.
+
+        # Extract the file name without the extension for the TOC entry
+        appendix_title = os.path.splitext(os.path.basename(appendix_path))[0]
         toc_entries.append(f"{appendix_title} ............................ Page {current_page}")
-        
+
         current_page += appendix_page_count  # Update for the next appendix
 
     # Step 3: Write TOC entries to a .txt file
